@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Weather App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- CSS and Google Font -->
+  <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Fresca'>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <img id="current-icon">
+
+  <div id="current-weather-details">
+    <a id="current-humidity">--</a>
+    <a id="current-pressure">--</a>
+    <a id="current-uvIndex">--</a>
+    <img id="temperature-icon">
+    <a id="current-temperature">--</a>
+    <a id="current-wind-bearing">--</a>
+    <a id="current-wind-speed">--</a>  
+    <button id="getWeather" onclick="getWeather()">Get Current Weather!</button>           
+  </div>
+
+  <p id="weather-summary"></p>
+
+  <!-- imported js file -->
+  <script  src="js/index.js"></script>
+
+</body>
+
+</html>

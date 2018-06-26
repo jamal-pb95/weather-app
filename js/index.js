@@ -1,12 +1,12 @@
-var humidity;
-var weatherIcon;
-var pressure;
-var uvIndex;
-var temperature;
-var temperatureIcon
-var windBearing;
-var windSpeed;
-var weatherSummary;
+let humidity;
+let weatherIcon;
+let pressure;
+let uvIndex;
+let temperature;
+let temperatureIcon
+let windBearing;
+let windSpeed;
+let weatherSummary;
 
 window.onload = function() {
   humidity = document.getElementById("current-humidity");
@@ -29,14 +29,15 @@ function humidityPercentage(h) {
 }
 
 function degreesToDirection(degrees) {
-  var range = 360/16;
-  var low = 360 - range/2;
-  var high = (low + range) % 360;
-  var angles = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"]
+  let range = 360/16;
+  let low = 360 - range/2;
+  let high = (low + range) % 360;
+  let angles = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"]
   for (i in angles) {
 
-    if(degrees>= low && degrees < high)
-      return angles[i];
+    if(degrees >= low && degrees < high) {
+      angles[i];
+    }
 
       low = (low + range) % 360;
       high = (high + range) % 360;
@@ -47,7 +48,7 @@ function knotsToKilometres(knot) {
   return Math.round( knot * 1.852);
 }
 
-var weatherImages = {
+const weatherImages = {
   "clear-day": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Sun_icon.svg/252px-Sun_icon.svg.png",
   "clear-night": "http://www.clker.com/cliparts/f/S/2/p/7/u/gold-matte-moon.svg",
   "rain": "https://cdn3.iconfinder.com/data/icons/weather-16/256/Rainy_Day-512.png",
@@ -63,28 +64,29 @@ var weatherImages = {
   "tornado": "http://hddfhm.com/images/clipart-of-a-tornado-11.png"
 }
 
-var getWeather = function() {
-  if(navigator.geolocation){
-    navigator.geolocation.getCurrentPosition(function(position){
-      var lat = position.coords.latitude;
-      var long = position.coords.longitude;
-      showWeather(lat, long)
+const getWeather = () => {
+  if(navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(position => {
+    let lat = position.coords.latitude;
+    let long = position.coords.longitude;
+    showWeather(lat, long)
   })
+
 } else {
      window.alert("Could not get location");
   }
 }
  
 function showWeather(lat, long) {
-  var url = `https://api.darksky.net/forecast/f672ff13193bfcc40427a678ebfdbc71/${lat},${long}` + `?format=jsonp&callback=displayWeather`;
-  var script = document.createElement("script");
+  let url = `https://api.darksky.net/forecast/f672ff13193bfcc40427a678ebfdbc71/${lat},${long}` + `?format=jsonp&callback=displayWeather`;
+  let script = document.createElement("script");
   script.type = "text/javascript";
   script.src = url;
   document.getElementsByTagName("head")[0].appendChild(script);
   displayWeather(object)   
 }
 
-var object;
+let object;
 
 function displayWeather(object) {
   humidity.innerHTML = "Humidity: " + humidityPercentage(object.currently.humidity) + "%";
@@ -100,4 +102,3 @@ function displayWeather(object) {
   document.getElementById("weather-summary").style.backgroundColor = "hsl(216, 100%, 60%)"; 
   console.log(object);
 }
-
